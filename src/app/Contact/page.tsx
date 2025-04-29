@@ -7,7 +7,6 @@ import React from 'react'
 const Page = () => {
   return (
     <div className="relative w-full">
-      {/* Hero Section */}
       <div className="relative h-[80vh]">
         
         <div className="absolute inset-0 overflow-hidden m-4 md:m-6 rounded-lg">
@@ -23,7 +22,6 @@ const Page = () => {
           <div className="absolute inset-0 bg-black/30 rounded-lg"></div>
         </div>
 
-        {/* Main Content */}
         <div className="relative z-10 h-full flex flex-col pt-10">
           <Navbar />
           <div className="flex-grow flex flex-col items-center justify-center px-4">
@@ -35,11 +33,11 @@ const Page = () => {
         </div>
       </div>
 
-      {/* Contact Content Section */}
+
       <div className="w-[90%] md:w-[80%] mx-auto py-16 flex flex-col md:flex-row gap-8">
-        {/* Left Side - Contact Information */}
+       
         <div className="w-full md:w-1/2 bg-gray-100 p-8 rounded-lg flex flex-col items-center">
-          {/* Contact Form Image */}
+         
           <div className="w-full h-80 relative mb-6 rounded-lg overflow-hidden">
             <Image
               src="/contact-form-image.jpg"
@@ -68,7 +66,6 @@ const Page = () => {
           </div>
         </div>
 
-        {/* Right Side - Contact Form */}
         <div className="w-full md:w-1/2 bg-gray-100 p-8 rounded-lg">
           <h2 className="text-2xl font-bold mb-4">Send us a message</h2>
           <p className="mb-6">We&apos;ll get back to you as soon as possible</p>

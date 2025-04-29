@@ -2,26 +2,34 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-const slidebars = [
+const reviews = [
   {
-    name: "Priya Sharma",
+    name: "Rajesh Kumar",
+    role: "E-commerce Business Owner",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+      "The background removal service saved me countless hours of work! My product photos now look professional and consistent across my entire catalog. The quick turnaround time was impressive.",
+    rating: "★★★★★",
   },
   {
-    name: "Ananya Verma",
+    name: "Priya Patel",
+    role: "Photography Studio Manager",
     description:
-      "Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+      "Your color correction service transformed our dull product images into vibrant, eye-catching visuals. The attention to detail in maintaining natural tones while enhancing appeal is remarkable.",
+    rating: "★★★★☆",
   },
   {
-    name: "Ishita Mehta",
+    name: "Amit Joshi",
+    role: "Marketing Director",
     description:
-      "Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.",
+      "The graphic design team exceeded our expectations with our campaign materials. They perfectly captured our brand identity while bringing fresh creative ideas to the table.",
+    rating: "★★★★★",
   },
   {
-    name: "Kavya Reddy",
+    name: "Neha Gupta",
+    role: "Fashion Blogger",
     description:
-      "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.",
+      "I'm amazed by the product dusting service - it made my jewelry photos look magazine-worthy without any harsh editing. The natural yet polished results are exactly what I needed.",
+    rating: "★★★★★",
   },
 ];
 
@@ -49,7 +57,7 @@ const services = [
   },
 ];
 
-export default function ActressServices() {
+export default function EditingServices() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState<"left" | "right">("right");
@@ -59,7 +67,7 @@ export default function ActressServices() {
     setDirection("right");
     setIsAnimating(true);
     setTimeout(() => {
-      setCurrentSlide((prev) => (prev + 1) % slidebars.length);
+      setCurrentSlide((prev) => (prev + 1) % reviews.length);
       setIsAnimating(false);
     }, 1000);
   };
@@ -69,7 +77,7 @@ export default function ActressServices() {
     setDirection("left");
     setIsAnimating(true);
     setTimeout(() => {
-      setCurrentSlide((prev) => (prev - 1 + slidebars.length) % slidebars.length);
+      setCurrentSlide((prev) => (prev - 1 + reviews.length) % reviews.length);
       setIsAnimating(false);
     }, 1000);
   };
@@ -77,7 +85,7 @@ export default function ActressServices() {
   useEffect(() => {
     const interval = setInterval(() => {
       setDirection("right");
-      setCurrentSlide((prev) => (prev + 1) % slidebars.length);
+      setCurrentSlide((prev) => (prev + 1) % reviews.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -94,7 +102,7 @@ export default function ActressServices() {
           </button>
 
           <div className="relative h-64">
-            {slidebars.map((slide, index) => (
+            {reviews.map((review, index) => (
               <div
                 key={index}
                 className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
@@ -106,11 +114,11 @@ export default function ActressServices() {
                 }`}
               >
                 <div className="text-center px-10 h-full flex flex-col justify-center">
-                  <div className="w-20 h-20 mx-auto bg-gray-700 rounded-full mb-3"></div>
-                  <p className="text-orange-400 font-medium">Actress</p>
-                  <h2 className="text-xl font-bold mt-1">{slide.name}</h2>
+                  <div className="text-yellow-400 text-xl mb-2">{review.rating}</div>
+                  <p className="text-orange-400 font-medium">{review.role}</p>
+                  <h2 className="text-xl font-bold mt-1">{review.name}</h2>
                   <p className="mt-3 text-gray-300 text-sm max-w-xl mx-auto">
-                    {slide.description}
+                    {review.description}
                   </p>
                 </div>
               </div>

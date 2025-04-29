@@ -22,8 +22,7 @@ const Navbar = () => {
               />
             </Link>
           </div>
-          
-          {/* Desktop Navigation */}
+       
           <div className="items-center gap-5 justify-evenly hidden md:flex">
             <Link href={"/"}>
               <h1 className="text-white font-medium text-lg hover:text-orange-500 transition-colors">Home</h1>

@@ -32,7 +32,7 @@ const CardGrid: React.FC<CardGridProps> = ({ cards }) => {
   );
 };
 
-// Example usage with your data
+
 const ServicesSection = () => {
   const servicesData: CardProps[] = [
     {

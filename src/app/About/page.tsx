@@ -60,7 +60,6 @@ export default function About() {
           <div className="absolute inset-0 bg-black/30 rounded-lg"></div>
         </div>
 
-        {/* Main Content */}
         <div className="relative z-10 h-full flex flex-col pt-10">
           <Navbar />
           <div className="flex-grow flex flex-col items-center justify-center px-4">
@@ -75,7 +74,6 @@ export default function About() {
         </div>
       </div>
 
-      {/* Commitments Section */}
       <div className="relative z-20 -mt-16 md:-mt-24 px-4">
         <div className="w-[90%] mx-auto bg-white rounded-xl shadow-lg p-8 border border-gray-200">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
@@ -136,7 +134,7 @@ export default function About() {
               </div>
             </div>
 
-            {/* See All Button */}
+    
             <div className="w-full max-w-md lg:w-1/3 h-full">
               <Link href={"/Services"}>
                 <button className="w-full h-[300px] sm:h-[400px] bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex flex-col items-center justify-center gap-4 p-6 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 cursor-pointer">
@@ -154,10 +152,11 @@ export default function About() {
         </div>
       </div>
 
-      {/* Contact Section */}
-      <Contactdiv />
+      
 
-      {/* Footer */}
+      <Contactdiv />   
+
+     
       <div className="pt-12"></div>
       <Footer />
     </div>

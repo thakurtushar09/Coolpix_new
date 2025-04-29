@@ -1,5 +1,6 @@
-'use client';
-import BeforeAfterSlider from "@/components/BeforeAndAfter";
+"use client";
+
+import { BeforeAfterSlider } from "@/components/BeforeAndAfter";
 import Contactdiv from "@/components/ContactDiv";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -11,56 +12,55 @@ const Page = () => {
     {
       title: "Background Change",
       description: "Professional background replacement",
-      beforeImage: "/bg-change-before.png",
-      afterImage: "/contact-form-image.jpg"
+      beforeImage: "/background-change-before.jpg",
+      afterImage: "/background-change-after.jpg",
     },
     {
       title: "Model/Product Retouching",
       description: "Enhance products and models naturally",
       beforeImage: "/retouching-before.jpg",
-      afterImage: "/retouching-after.jpg"
+      afterImage: "/retouching-after.jpg",
     },
     {
       title: "Ghost  Editing",
       description: "Invisible mannequin effects for apparel",
       beforeImage: "/ghost-before.jpg",
-      afterImage: "/ghost-after.jpg"
+      afterImage: "/ghost-after.jpg",
     },
     {
-      title: "Garment Color Correction",
+      title: " Color Correction",
       description: "Accurate color representation",
-      beforeImage: "/halte.jpg",
-      afterImage: "/contact-form-image.jpg"
+      beforeImage: "/color-correction-before.jpg",
+      afterImage: "/color-correction-after.jpg",
     },
     {
       title: "Shadow Creation",
       description: "Realistic shadows for products",
-      beforeImage: "/halte.jpg",
-      afterImage: "/contact-form-image.jpg"
+      beforeImage: "/shadow-creation-before.jpg",
+      afterImage: "/shadow-creation-after.jpg",
     },
     {
       title: "Background Cleaning",
       description: "Flawless product backgrounds",
-      beforeImage: "/halte.jpg",
-      afterImage: "/contact-form-image.jpg"
+      beforeImage: "/cleaning-before.jpg",
+      afterImage: "/cleaning-after.jpg",
     },
     {
       title: "Product Dusting",
       description: "Remove dust and scratches",
-      beforeImage: "/halte.jpg",
-      afterImage: "/contact-form-image.jpg"
+      beforeImage: "/dusting-before.jpg",
+      afterImage: "/dusting-after.jpg",
     },
     {
       title: "Graphics & Web Design",
       description: "Custom design solutions",
-      beforeImage: "/halte.jpg",
-      afterImage: "/contact-form-image.jpg"
-    }
+      beforeImage: "/graphics-before.jpg",
+      afterImage: "/graphics-after.jpg",
+    },
   ];
 
   return (
     <div className="relative w-full">
-      {/* Hero Section */}
       <div className="relative h-[80vh]">
         <div className="absolute inset-0 overflow-hidden m-4 md:m-6 rounded-lg">
           <Image
@@ -84,8 +84,6 @@ const Page = () => {
           </div>
         </div>
       </div>
-
-      {/* Services Grid Section */}
       <div className="w-full py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
@@ -96,8 +94,8 @@ const Page = () => {
             {services.map((service, index) => (
               <div key={index} className="group">
                 <BeforeAfterSlider
-                  beforeImage={service.beforeImage}
-                  afterImage={service.afterImage}
+                  beforeUrl={service.beforeImage}
+                  afterUrl={service.afterImage}
                   title={service.title}
                   description={service.description}
                 />
@@ -106,8 +104,6 @@ const Page = () => {
           </div>
         </div>
       </div>
-
-      {/* Contact and Footer */}
       <Contactdiv />
       <div className="pt-12"></div>
       <Footer />

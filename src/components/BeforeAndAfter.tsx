@@ -1,113 +1,89 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
 
 interface BeforeAfterSliderProps {
-  beforeImage: string;
-  afterImage: string;
+  beforeUrl: string;
+  afterUrl: string;
   title: string;
   description: string;
 }
 
-const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
-  beforeImage,
-  afterImage,
+export const BeforeAfterSlider = ({
+  beforeUrl,
+  afterUrl,
   title,
   description,
-}) => {
-  const [sliderPosition, setSliderPosition] = useState(0); // start with before image only
-  const [isRevealed, setIsRevealed] = useState(false);
+}: BeforeAfterSliderProps) => {
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const [showLabels, setShowLabels] = useState(true);
 
-  const handleClick = () => {
-    setIsRevealed(true);
-    setSliderPosition(100); // fully reveal after image on first click
+  const handleMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!isDragging) return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width));
+    const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
+
+    setSliderPosition(percent);
+    setShowLabels(false);
   };
 
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSliderPosition(parseInt(e.target.value));
+  const handleMouseDown = () => {
+    setIsDragging(true);
+    setShowLabels(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    setTimeout(() => setShowLabels(true), 300); 
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto my-16 px-4">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">{title}</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">{description}</p>
-      </div>
-
+    <div className="w-full max-w-[700px] mx-auto">
       <div
-        className="relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-lg group cursor-pointer"
-        onClick={!isRevealed ? handleClick : undefined}
+        className="relative w-full aspect-[70/45] overflow-hidden select-none"
+        onMouseMove={handleMove}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp} 
       >
-        {/* Before image full */}
-        <Image
-          src={beforeImage}
-          alt="Before"
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
 
-        {/* After image clipped by slider */}
-        {isRevealed && (
-          <div
-            className="absolute top-0 left-0 h-full overflow-hidden transition-all duration-300"
-            style={{ width: `${sliderPosition}%` }}
-          >
-            <Image
-              src={afterImage}
-              alt="After"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        )}
-
-        {/* Drag slider handle */}
-        {isRevealed && (
-          <>
-            <div
-              className="absolute top-0 bottom-0 w-1 bg-white z-10"
-              style={{ left: `${sliderPosition}%` }}
-            >
-              <div className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center -translate-x-1/2">
-                <span className="text-gray-700 text-xs font-bold">DRAG</span>
-              </div>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={sliderPosition}
-              onChange={handleSliderChange}
-              className="absolute top-0 left-0 w-full h-full opacity-0 cursor-ew-resize z-20"
-            />
-          </>
-        )}
-
-        {/* Click prompt (before revealing) */}
-        {!isRevealed && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-            <div className="bg-white px-4 py-2 rounded-md shadow-lg text-sm font-medium text-gray-700">
-              Click to compare before / after
-            </div>
-          </div>
-        )}
-
-        {/* Labels */}
-        <div className="absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1 rounded-md">
-          Before
+        <Image alt="Before image" fill draggable={false} priority src={beforeUrl} />
+        <div
+          className="absolute top-0 left-0 right-0 w-full aspect-[70/45] overflow-hidden select-none"
+          style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
+        >
+          <Image alt="After image" fill draggable={false} priority src={afterUrl} />
         </div>
-        {isRevealed && (
-          <div
-            className="absolute bottom-4 bg-black/50 text-white px-3 py-1 rounded-md"
-            style={{ left: `calc(${sliderPosition}% + 1rem)` }}
-          >
+
+        <div
+          className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-10"
+          style={{ left: `calc(${sliderPosition}% - 1px)` }}
+        >
+          <div className="bg-white absolute rounded-full h-3 w-3 -left-1 top-[calc(50%-5px)]" />
+        </div>
+
+
+        {showLabels && (
+          <div className="absolute top-3 left-3 z-20 bg-black/50 text-white text-xs font-medium px-2 py-1 rounded">
+            Before
+          </div>
+        )}
+
+        {showLabels && (
+          <div className="absolute top-3 right-3 z-20 bg-black/50 text-white text-xs font-medium px-2 py-1 rounded">
             After
           </div>
         )}
       </div>
+
+      <div className="mt-4 text-center">
+        <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+        <p className="text-gray-600 mt-1 text-sm">{description}</p>
+      </div>
     </div>
   );
 };
-
-export default BeforeAfterSlider;

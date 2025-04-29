@@ -53,9 +53,9 @@ export default function Home() {
 
   return (
     <div className="relative w-full">
-      {/* Hero Section */}
+      
       <div className="relative h-screen">
-        {/* Hero Image Container */}
+       
         <div className="absolute inset-0 overflow-hidden m-4 md:m-6 rounded-lg">
           <Image
             src="/hero-image.jpg"
@@ -69,7 +69,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/30 rounded-lg"></div>
         </div>
 
-        {/* Main Content */}
+       
         <div className="relative z-10 h-full flex flex-col pt-10">
           <Navbar />
           <div className="flex-grow flex items-center justify-center px-4">
@@ -93,7 +93,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Services Cards Section */}
+ 
       <div className="relative z-20 -mt-16 md:-mt-24 px-4">
         <div className="w-[90%] mx-auto bg-white rounded-xl shadow-lg p-8 border border-gray-200">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
@@ -111,10 +111,10 @@ export default function Home() {
 
       <Contactdiv/>
 
-      {/* Contact and Services Buttons Section */}
+      
       
 
-      {/* Spacer */}
+  
       <div className="pt-12"></div>
 
       <Footer/>
