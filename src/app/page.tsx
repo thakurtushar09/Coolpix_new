@@ -20,15 +20,15 @@ const ServiceCard = ({ icon: Icon, title, description }: ServiceCardProps) => {
       </div>
       <h3 className="text-xl font-semibold mb-3 text-gray-900">{title}</h3>
       <p className="text-gray-600 mb-6">{description}</p>
-      <a 
-        href="#" 
+      <Link 
+        href="/Services" 
         className="mt-auto text-orange-500 font-medium hover:underline self-start flex items-center gap-2 group-hover:gap-3 transition-all"
       >
         Learn more
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
-      </a>
+      </Link>
     </div>
   );
 };
