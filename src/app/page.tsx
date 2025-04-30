@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import ActressServices from "@/components/Slidebar";
 import Contactdiv from "@/components/ContactDiv";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 interface ServiceCardProps {
   icon: React.ComponentType<{ className?: string }>;
@@ -81,12 +82,12 @@ export default function Home() {
                 Elevate your <span className="text-orange-500">visuals</span> with our professional editing solutions
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                <Link href={'/Services'} className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 cursor-pointer">
                   Browse Services
-                </button>
-                <button className="bg-white hover:bg-white/10 text-orange-500 border border-white px-6 py-3 rounded-lg transition-all duration-300 cursor-pointer">
+                </Link>
+                <Link href={'/Contact'} className="bg-white hover:bg-white/10 text-orange-500 border border-white px-6 py-3 rounded-lg transition-all duration-300 cursor-pointer">
                   Contact us
-                </button>
+                </Link>
               </div>
             </div>
           </div>
